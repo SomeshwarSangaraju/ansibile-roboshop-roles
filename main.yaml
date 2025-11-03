@@ -1,5 +1,5 @@
 - name: "Playbook {{ component }} setup"
   hosts: "{{ component }}"
   become: yes
-  tasks:
+  roles:
   - "{{ component }}"
