@@ -3,8 +3,10 @@
     src: rabbitmq.repo
     dest: /etc/yum.repos.d/rabbitmq.repo
 
-- name: install rabbitmq
-  ansible.builtin.command: dnf install rabbitmq-server -y
+- name: install rabbitmq server
+  ansible.builtin.package:
+    name: rabbitmq-server
+    state: present
 
 - name: start and enable services
   ansible.builtin.service:
