@@ -7,8 +7,8 @@
     zone_id: "Z01824022CI9F0U27UQFL" 
     domain_name: "someshwar.fun"
     # we can pass instances through command line using -e
-    instances: 
-    - mongodb
+    # instances: 
+    # - mongodb
     # - redis
     # - mysql
     # - rabbitmq
