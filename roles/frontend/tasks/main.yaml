@@ -28,6 +28,7 @@
 
 - name: change directory
   ansible.builtin.command:
+  args:
     chdir: /usr/share/nginx/html
 
 - name: extract frontend application

@@ -50,6 +50,7 @@
 
 - name: Change directory
   ansible.builtin.command:
+  args:
     chdir: /app
 
 - name: Installing maven packages

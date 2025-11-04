@@ -43,6 +43,11 @@
     dest: /app
     remote_src: yes
 
+- name: Change directory
+  ansible.builtin.command:
+  args:
+    chdir: /app
+
 - name: install dependencies
   community.general.npm:
     path: /app

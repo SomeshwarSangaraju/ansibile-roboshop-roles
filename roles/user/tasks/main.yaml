@@ -45,6 +45,7 @@
 
 - name: Change directory
   ansible.builtin.command:
+  args:
     chdir: /app
  
 - name: Install nodejs dependencies
