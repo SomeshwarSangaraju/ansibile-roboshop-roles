@@ -53,7 +53,11 @@
   ansible.builtin.command:
     chdir: /app
 
-    
+- name: Installing maven packages
+  ansible.builtin.command:  mvn clean package 
+
+- name: move jar file
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
 
 - name: copying shipping services
   ansible.builtin.file:
