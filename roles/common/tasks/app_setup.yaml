@@ -31,8 +31,3 @@
     src: /tmp/catalogue.zip
     dest: /app
     remote_src: yes
-
-- name: Change directory
-  ansible.builtin.command:
-  args:
-    chdir: /app
