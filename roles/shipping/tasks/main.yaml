@@ -1,3 +1,8 @@
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_setup.yaml
+
 - name: java setup
   ansible.builtin.import_role:
     name: common
@@ -11,10 +16,6 @@
   - cryptography
   - PyMySQL
 
-- name: app setup
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: app_setup.yaml
 
 - name: import shipping data into mysql
   community.mysql.mysql_db:

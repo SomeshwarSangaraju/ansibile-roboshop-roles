@@ -1,0 +1,5 @@
+- name: restart payment
+  ansible.builtin.service:
+    name: payment
+    state: restarted # restarted if you have already started earlier
+    enabled: yes
