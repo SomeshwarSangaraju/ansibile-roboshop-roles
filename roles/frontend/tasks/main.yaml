@@ -34,7 +34,7 @@
 - name: extract frontend application
   ansible.builtin.unarchive:
     src: /tmp/frontend.zip 
-    dest: /app
+    dest: /usr/share/nginx/html/
     remote_src: yes
 
 - name: Accessing nginx configurations
