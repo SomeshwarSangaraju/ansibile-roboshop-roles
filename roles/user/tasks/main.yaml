@@ -49,8 +49,8 @@
     path: /app
 
 - name: copying user services
-  ansible.builtin.file:
-    src: files/user.service
+  ansible.builtin.copy:
+    src: user.service
     dest: /etc/systemd/system/user.service
 
 - name: Enable and start user
