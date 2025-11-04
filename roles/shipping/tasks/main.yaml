@@ -48,11 +48,6 @@
     dest: /app
     remote_src: yes
 
-- name: Change directory
-  ansible.builtin.command:
-  args:
-    chdir: /app
-
 - name: Installing maven packages
   ansible.builtin.command:  mvn clean package 
 
