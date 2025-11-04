@@ -42,11 +42,6 @@
     src: /tmp/cart.zip 
     dest: /app
     remote_src: yes
-
-- name: Change directory
-  ansible.builtin.command:
-  args:
-    chdir: /app
  
 - name: Install nodejs dependencies
   community.general.npm:
@@ -54,7 +49,7 @@
     path: /app
 
 - name: copying cart services
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: cart.service
     dest: /etc/systemd/system/cart.service
 
