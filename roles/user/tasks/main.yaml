@@ -50,7 +50,7 @@
 
 - name: copying user services
   ansible.builtin.file:
-    src: user.service
+    src: files/user.service
     dest: /etc/systemd/system/user.service
 
 - name: Enable and start user
