@@ -1,10 +1,7 @@
-- name: Install maven
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - maven
-    - mysql
+- name: java setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java.yaml
 
 - name: install mysql python libraries
   ansible.builtin.pip:
@@ -14,61 +11,10 @@
   - cryptography
   - PyMySQL
 
-- name: create roboshop system user
-  ansible.builtin.user:
-    name: roboshop
-    shell: /sbin/nologin
-    comment: "Roboshop system user"
-    home: /app
-    system: true
-
-- name: Delete app directory
-  ansible.builtin.file:
-    path: /app
-    state: absent
-
-- name: create app directory
-  ansible.builtin.file:
-    path: /app
-    state: directory
-
-- name: Deleting shipping application
-  ansible.builtin.file:
-    path: /tmp/shipping.zip
-    state: absent
-  
-- name: Download shipping application
-  ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
-    dest: /tmp/shipping.zip
-
-- name: extract shipping application
-  ansible.builtin.unarchive:
-    src: /tmp/shipping.zip 
-    dest: /app
-    remote_src: yes
-
-- name: install dependencies
-  ansible.builtin.command: mvn clean package
-  args:
-    chdir: /app
-
-- name: move jar file
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
-  args:
-    chdir: /app
-
-- name: copying shipping services
-  ansible.builtin.copy:
-    src: shipping.service
-    dest: /etc/systemd/system/shipping.service
-
-- name: Enable and start shipping
-  ansible.builtin.systemd_service:
-    name: shipping
-    state: started
-    enabled: true
-    daemon_reload: true
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_setup.yaml
 
 - name: import shipping data into mysql
   community.mysql.mysql_db:
@@ -83,7 +29,7 @@
   - /app/db/app-user.sql 
   - /app/db/master-data.sql
 
-- name: restart shipping services
-  ansible.builtin.service:
-    name: shipping
-    state: restarted
+- name: system setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: system_setup.yaml
