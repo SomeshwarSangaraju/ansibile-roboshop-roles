@@ -1,5 +1,4 @@
-- name: restart payment
-  ansible.builtin.service:
-    name: payment
-    state: restarted # restarted if you have already started earlier
-    enabled: yes
+- name: daemon reload
+  # systemctl daemon-reload
+  ansible.builtin.systemd_service:
+    daemon_reload: true
