@@ -16,19 +16,31 @@
   - cryptography
   - PyMySQL
 
-
 - name: import shipping data into mysql
   community.mysql.mysql_db:
     state: import
     name: all
-    login_host: mysql.someshwar.fun # "{{ MYSQL_HOST }}"
-    login_user:  root #"{{ MYSQL_ROOT_USER }}"
-    login_password:  Roboshop@1 #"{{ MYSQL_ROOT_PASSWORD }}"
+    login_host: "{{ MYSQL_HOST }}"
+    login_user: "{{ MYSQL_ROOT_USER }}"
+    login_password: "{{ MYSQL_ROOT_PASSWORD }}"
     target: "{{ item }}"
   loop:
   - /app/db/schema.sql
   - /app/db/app-user.sql 
   - /app/db/master-data.sql
+
+# - name: import shipping data into mysql
+#   community.mysql.mysql_db:
+#     state: import
+#     name: all
+#     login_host: mysql.someshwar.fun # "{{ MYSQL_HOST }}"
+#     login_user:  root #"{{ MYSQL_ROOT_USER }}"
+#     login_password:  Roboshop@1 #"{{ MYSQL_ROOT_PASSWORD }}"
+#     target: "{{ item }}"
+#   loop:
+#   - /app/db/schema.sql
+#   - /app/db/app-user.sql 
+#   - /app/db/master-data.sql
 
 - name: system setup
   ansible.builtin.import_role:
